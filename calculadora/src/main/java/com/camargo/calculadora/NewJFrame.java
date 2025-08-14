@@ -8,8 +8,9 @@ package com.camargo.calculadora;
  *
  * @author camargo
  */
-public class NewJFrame extends javax.swing.JFrame {
 
+public class NewJFrame extends javax.swing.JFrame {
+    private boolean novaEntrada = true;
     /**
      * Creates new form NewJFrame
      */
@@ -17,6 +18,14 @@ public class NewJFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void adicionarNumero(String numero){
+        if(novaEntrada || tfValor.getText().equals("0,00")){
+            tfValor.setText(numero);
+        }else{
+            tfValor.setText(tfValor.getText() + numero);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,12 +76,27 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.add(btnDividir);
 
         btn7.setText("7");
+        btn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn7ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn7);
 
         btn8.setText("8");
+        btn8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn8ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn8);
 
         btn9.setText("9");
+        btn9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn9ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn9);
 
         btnMultiplicar.setBackground(new java.awt.Color(242, 242, 242));
@@ -80,9 +104,19 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.add(btnMultiplicar);
 
         btn4.setText("4");
+        btn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn4);
 
         btn5.setText("5");
+        btn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn5);
 
         btn6.setText("6");
@@ -98,12 +132,27 @@ public class NewJFrame extends javax.swing.JFrame {
         jPanel1.add(btnMenos);
 
         btn1.setText("1");
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn1);
 
         btn2.setText("2");
+        btn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn2);
 
         btn3.setText("3");
+        btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn3);
 
         btnMais.setBackground(new java.awt.Color(242, 242, 242));
@@ -145,7 +194,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tfValor)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -154,7 +203,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -166,12 +215,44 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        // TODO add your handling code here:
+        adicionarNumero("6");// TODO add your handling code here:
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+        adicionarNumero("3");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn3ActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        adicionarNumero("1");// TODO add your handling code here:
+    }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+        adicionarNumero("2");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn2ActionPerformed
+
+    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+        adicionarNumero("4");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn4ActionPerformed
+
+    private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
+        adicionarNumero("7");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn7ActionPerformed
+
+    private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
+        adicionarNumero("8");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn8ActionPerformed
+
+    private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
+        adicionarNumero("9");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn9ActionPerformed
+
+    private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
+        adicionarNumero("5");        // TODO add your handling code here:
+    }//GEN-LAST:event_btn5ActionPerformed
 
     /**
      * @param args the command line arguments
