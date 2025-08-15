@@ -11,6 +11,9 @@ package com.camargo.calculadora;
 
 public class NewJFrame extends javax.swing.JFrame {
     private boolean novaEntrada = true;
+    
+    private double valorAnterior;
+    private String operador;
     /**
      * Creates new form NewJFrame
      */
@@ -18,14 +21,19 @@ public class NewJFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void operacao(String op){
+         valorAnterior = Double.parseDouble(tfValor.getText().replace(",", "."));
+        operador = op;
+        novaEntrada = true;
+    }
     private void adicionarNumero(String numero){
         if(novaEntrada || tfValor.getText().equals("0,00")){
             tfValor.setText(numero);
         }else{
             tfValor.setText(tfValor.getText() + numero);
-        }
-        
+        }   
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,6 +183,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btnIgual.setBackground(new java.awt.Color(242, 242, 242));
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnIgual);
 
         tfValor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -253,6 +266,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         adicionarNumero("5");        // TODO add your handling code here:
     }//GEN-LAST:event_btn5ActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIgualActionPerformed
 
     /**
      * @param args the command line arguments
