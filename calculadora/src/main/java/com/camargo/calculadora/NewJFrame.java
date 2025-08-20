@@ -10,29 +10,18 @@ package com.camargo.calculadora;
  */
 
 public class NewJFrame extends javax.swing.JFrame {
-    private boolean novaEntrada = true;
+
     
-    private double valorAnterior;
-    private String operador;
+    
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
     }
-
-    private void operacao(String op){
-         valorAnterior = Double.parseDouble(tfValor.getText().replace(",", "."));
-        operador = op;
-        novaEntrada = true;
-    }
-    private void adicionarNumero(String numero){
-        if(novaEntrada || tfValor.getText().equals("0,00")){
-            tfValor.setText(numero);
-        }else{
-            tfValor.setText(tfValor.getText() + numero);
-        }   
-    }
+    private double valor1, valor2;
+    private String operacao;
+    private double resultado;
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,23 +53,39 @@ public class NewJFrame extends javax.swing.JFrame {
         btnVirgula = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
         btnIgual = new javax.swing.JButton();
-        tfValor = new javax.swing.JTextField();
+        Text = new javax.swing.JTextField();
+        label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridLayout(5, 4));
 
         btnAC.setText("AC");
+        btnAC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnACActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAC);
 
         btnMaisMenos.setText("+/-");
         jPanel1.add(btnMaisMenos);
 
         btnPercentual.setText("%");
+        btnPercentual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPercentualActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPercentual);
 
         btnDividir.setBackground(new java.awt.Color(242, 242, 242));
         btnDividir.setText("/");
+        btnDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDividirActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDividir);
 
         btn7.setText("7");
@@ -109,6 +114,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btnMultiplicar.setBackground(new java.awt.Color(242, 242, 242));
         btnMultiplicar.setText("*");
+        btnMultiplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMultiplicarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnMultiplicar);
 
         btn4.setText("4");
@@ -137,6 +147,11 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btnMenos.setBackground(new java.awt.Color(242, 242, 242));
         btnMenos.setText("-");
+        btnMenos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnMenos);
 
         btn1.setText("1");
@@ -165,9 +180,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
         btnMais.setBackground(new java.awt.Color(242, 242, 242));
         btnMais.setText("+");
+        btnMais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaisActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnMais);
 
         btn0.setText("0");
+        btn0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn0ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn0);
 
         btnVirgula.setText(",");
@@ -190,45 +215,38 @@ public class NewJFrame extends javax.swing.JFrame {
         });
         jPanel1.add(btnIgual);
 
-        tfValor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tfValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        tfValor.setText("0,00");
-        tfValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfValorActionPerformed(evt);
-            }
-        });
+        Text.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfValor)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 368, Short.MAX_VALUE))
+                    .addComponent(Text, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfValorActionPerformed
-
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        adicionarNumero("6");// TODO add your handling code here:
+        Text.setText(Text.getText()+ "6");// TODO add your handling code here:
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
@@ -236,40 +254,118 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        adicionarNumero("3");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "3");        // TODO add your handling code here:
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        adicionarNumero("1");// TODO add your handling code here:
+        Text.setText(Text.getText()+ "1");// TODO add your handling code here:
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        adicionarNumero("2");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "2");        // TODO add your handling code here:
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        adicionarNumero("4");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "4");        // TODO add your handling code here:
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        adicionarNumero("7");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "7");      // TODO add your handling code here:
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        adicionarNumero("8");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "8");       // TODO add your handling code here:
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        adicionarNumero("9");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "9");       // TODO add your handling code here:
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        adicionarNumero("5");        // TODO add your handling code here:
+        Text.setText(Text.getText()+ "5"); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
-        // TODO add your handling code here:
+        valor1 = Double.parseDouble(Text.getText());
+        valor2 = Double.parseDouble(Text.getText());
+        if(operacao == "soma"){
+            resultado = valor1 + valor2;
+            label.setText(valor1 + "+" + valor2 + "=");
+            Text.setText(String.valueOf(resultado));
+        }
+        
+        if(operacao == "divisao"){
+            resultado = valor1 / valor2;
+            label.setText(valor1 + "/" + valor2 + "=");
+             Text.setText(String.valueOf(resultado));
+        }
+        if(operacao == "menos"){
+            resultado = valor1 - valor2;
+            label.setText(valor1 + "-" + valor2 + "=");
+             Text.setText(String.valueOf(resultado));
+        }
+        if(operacao == "multiplicacao"){
+        resultado = valor1 * valor2;
+        label.setText(valor1 + "*" + valor2 + "=");
+        Text.setText(String.valueOf(resultado));
+        }
+       // TODO add your handling code here:
     }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void btnMaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisActionPerformed
+        label.setText(Text.getText());
+        Text.setText("");   
+        valor1 = Double.parseDouble(label.getText());
+        operacao = "soma";
+        
+        label.setText(valor1 + " + "); 
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnMaisActionPerformed
+
+    private void btnPercentualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPercentualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPercentualActionPerformed
+
+    private void btnDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDividirActionPerformed
+        label.setText(Text.getText());
+        Text.setText("");   
+        valor1 = Double.parseDouble(label.getText());
+        operacao = "divisao";
+        
+        label.setText(valor1 + " / "); // TODO add your handling code here:
+    }//GEN-LAST:event_btnDividirActionPerformed
+
+    private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
+       label.setText(Text.getText());
+        Text.setText("");   
+        valor1 = Double.parseDouble(label.getText());
+        operacao = "menos";
+        
+        label.setText(valor1 + " - "); // TODO add your handling code here:
+    }//GEN-LAST:event_btnMenosActionPerformed
+
+    private void btnMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMultiplicarActionPerformed
+        label.setText(Text.getText());
+        Text.setText("");   
+        valor1 = Double.parseDouble(label.getText());
+        operacao = "multiplicacao";
+        
+        label.setText(valor1 + " * ");// TODO add your handling code here:
+    }//GEN-LAST:event_btnMultiplicarActionPerformed
+
+    private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
+       Text.setText(Text.getText()+ "0");  // TODO add your handling code here:
+    }//GEN-LAST:event_btn0ActionPerformed
+
+    private void btnACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACActionPerformed
+        Text.setText("");
+        label.setText("");
+        valor1 = 0;
+        valor2 = 0;
+        operacao = null;
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnACActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,6 +403,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Text;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
@@ -328,6 +425,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnPercentual;
     private javax.swing.JButton btnVirgula;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tfValor;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
